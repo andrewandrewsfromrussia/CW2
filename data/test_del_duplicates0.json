@@ -1,0 +1,10 @@
+[
+  {
+    "id": "x1",
+    "name": "Dev",
+    "city": "Moscow",
+    "salary": 100000,
+    "sal_currency": "RUR",
+    "url": "url"
+  }
+]

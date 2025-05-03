@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "name": "Python Dev",
+    "city": "Moscow",
+    "salary": 150000,
+    "sal_currency": "RUR",
+    "url": "http://example.com/1"
+  },
+  {
+    "id": "3",
+    "name": "Go Dev",
+    "city": "Moscow",
+    "salary": 180000,
+    "sal_currency": "RUR",
+    "url": "http://example.com/3"
+  }
+]
