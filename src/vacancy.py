@@ -27,7 +27,8 @@ class Vacancy:
             raise TypeError("Некорректный URL")
 
     def __str__(self):
-        return f"ID: {self.id}\n{self.name}\nГород: {self.city} | Зарплата: {self.salary} {self.sal_currency}\n{self.url}\n"
+        return (f"ID: {self.id}\n{self.name}\nГород: {self.city} "
+                f"| Зарплата: {self.salary} {self.sal_currency}\n{self.url}\n")
 
     def _get_salary_value(self):
         """Метод для взаимодействия с диапазоном зарплат"""
