@@ -2,6 +2,7 @@ import pytest
 from src.vacancies import Vacancies
 from src.vacancy import Vacancy
 
+
 @pytest.fixture
 def sample_data():
     return [
@@ -28,6 +29,7 @@ def sample_data():
         }
     ]
 
+
 def test_vacancies_initialization(sample_data):
     vacancies = Vacancies(sample_data)
     assert len(vacancies) == 3
@@ -49,14 +51,17 @@ def test_vacancies_initialization(sample_data):
     assert v3.salary == "Не указано"
     assert v3.sal_currency == ""
 
+
 def test_vacancies_iteration(sample_data):
     vacancies = Vacancies(sample_data)
     names = [v.name for v in vacancies]
     assert names == ["Python Developer", "Data Scientist", "QA Engineer"]
 
+
 def test_vacancies_index_access(sample_data):
     vacancies = Vacancies(sample_data)
     assert vacancies[1].name == "Data Scientist"
+
 
 def test_vacancies_len(sample_data):
     vacancies = Vacancies(sample_data)

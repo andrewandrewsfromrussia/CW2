@@ -1,3 +1,5 @@
+from typing import Optional
+
 import requests
 from abc import ABC, abstractmethod
 
@@ -16,7 +18,15 @@ class HeadHunterConnect(ABC):
         pass
 
     @abstractmethod
-    def search_vacancies(self, keyword: str, salary: int = None, per_page: int = 20, page: int = 0, area: int = 113, only_with_salary: bool = False):
+    def search_vacancies(
+            self,
+            keyword: str,
+            salary: Optional[int] = None,
+            per_page: int = 20,
+            page: int = 0,
+            area: int = 113,
+            only_with_salary: bool = False
+    ):
         """
         Поиск вакансий по ключевому слову
         """
@@ -37,7 +47,15 @@ class HeadHunterAPI(HeadHunterConnect):
         return self._base_url
 
     # Метод поиска по вакансии
-    def search_vacancies(self, keyword: str, salary: int = None, per_page: int = 20, page: int = 0, area: int = 113, only_with_salary: bool = False):
+    def search_vacancies(
+            self,
+            keyword: str,
+            salary: Optional[int] = None,
+            per_page: int = 20,
+            page: int = 0,
+            area: int = 113,
+            only_with_salary: bool = False
+    ):
         params = {
             "text": keyword,                       # Ключевое слово для поиска
             "salary": salary,                      # Зарплата

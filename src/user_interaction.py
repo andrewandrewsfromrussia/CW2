@@ -1,5 +1,4 @@
 from src.hh_client import HeadHunterAPI
-from src.vacancy import Vacancy
 from src.vacancies import Vacancies
 from src.saveJSON import JSONVacancyStorage
 
@@ -33,7 +32,7 @@ def user_interaction():
             vacancies = Vacancies(vacancies_json)
             print(f"Найдено вакансий: {len(vacancies)}")
             choise_one = input("Хотите сохранить? y/n [y]\nПользователь: ")
-            if choise_one =="y":
+            if choise_one == "y":
                 saver._add_vacancy(vacancies)
             elif choise_one == "n":
                 continue

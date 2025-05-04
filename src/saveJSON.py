@@ -1,18 +1,20 @@
 import os
 import json
 from abc import abstractmethod, ABC
+from typing import Optional, Any
+
 from src.vacancy import Vacancy
 
 
 class VacancyStorage(ABC):
     """Абстрактный класс обязательств реализации методов сохранения"""
     @abstractmethod
-    def _add_vacancy(self, vacancy: dict) -> None:
+    def _add_vacancy(self, vacancies: list[Vacancy]) -> None:
         """Добавляет вакансию в файл"""
         pass
 
     @abstractmethod
-    def _get_vacancy(self, **criteria) -> list[dict]:
+    def _get_vacancy(self, count=5, filters: Optional[dict[Any, Any]] = None) -> list[Vacancy]:
         """Получает вакансии по критериям"""
         pass
 
@@ -80,7 +82,7 @@ class JSONVacancyStorage(VacancyStorage):
         else:
             print("Нет новых вакансий для добавления")
 
-    def _get_vacancy(self, count=5, filters: dict = None) -> list[Vacancy]:
+    def _get_vacancy(self, count=5, filters: Optional[dict[Any, Any]] = None) -> list[Vacancy]:
         """Метод получения списка объектов Vacancy из файла"""
         if not os.path.exists(self.filename):
             return []
@@ -120,7 +122,7 @@ class JSONVacancyStorage(VacancyStorage):
 
         return vacancies
 
-    def get_vacancy(self, count: int = 1000, filters: dict = None):
+    def get_vacancy(self, count: int = 1000, filters: Optional[dict[Any, Any]] = None):
         """Публичный метод для получения вакансий из файла"""
         vacancies = self._get_vacancy(count=count, filters=filters)
 
@@ -201,9 +203,7 @@ class JSONVacancyStorage(VacancyStorage):
 
         # Проверка всех ID на уникальные значения
         if check_unique:
-            seen_ids = set()
-            vacancies = [vacancy for vacancy in vacancies if
-                         vacancy.id not in seen_ids and not seen_ids.add(vacancy.id)]
+            vacancies = list({vac.id: vac for vac in vacancies}.values())
 
         new_data = [
             {

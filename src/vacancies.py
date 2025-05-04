@@ -1,6 +1,4 @@
 from src.vacancy import Vacancy
-from src.hh_client import HeadHunterAPI
-from src.saveJSON import JSONVacancyStorage
 
 
 class Vacancies:
@@ -10,7 +8,7 @@ class Vacancies:
         """Инициализатор класса Vacancies"""
         self.vacancies = []  # Список вакансий класса Vacancy
         for item in vacancies_data:
-            id = item.get("id")
+            id = str(item.get("id", ""))
             name = item.get("name", "Не указано")
             city = item.get("area", {}).get("name", "Не указано")
             salary = item.get("salary")

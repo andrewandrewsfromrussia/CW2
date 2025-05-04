@@ -1,6 +1,6 @@
-import pytest
 from unittest.mock import patch
 from src.hh_client import HeadHunterAPI
+
 
 # Тест успешного запроса
 @patch("src.hh_client.requests.get")
@@ -16,6 +16,7 @@ def test_search_vacancies_success(mock_get):
     assert result[0]["id"] == "1"
     assert result[0]["name"] == "Python Developer"
 
+
 # Тест запроса с ошибкой (например, 403 Forbidden)
 @patch("src.hh_client.requests.get")
 def test_search_vacancies_error(mock_get):
@@ -27,6 +28,7 @@ def test_search_vacancies_error(mock_get):
     assert isinstance(result, str)
     assert result.startswith("Error:")
     assert "403" in result
+
 
 # Тест параметров запроса (важно, что параметры правильно передаются)
 @patch("src.hh_client.requests.get")
